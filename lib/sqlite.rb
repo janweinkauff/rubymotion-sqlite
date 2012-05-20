@@ -6,11 +6,13 @@ def initialize
 #todo: add the location of storage    
 @db  = FMDatabase.new
 @db.open
-@db.getTableSchema("wordlist")
+#@db.getTableSchema("wordlist")
 end
 
+
+
 def tables
-  
+   @tables
 end  
 
 def columns
@@ -18,7 +20,12 @@ def columns
 end  
 
 def createTable
-@result = @db.executeUpdate("create table wordlist (id INTEGER PRIMARY KEY, word varchar(20),length int, UNIQUE(word));")
+  #override in the model
+# @result = @db.executeUpdate("create table wordlist (id INTEGER PRIMARY KEY, word varchar(20),length int, UNIQUE(word));")
+end
+
+def silent_execute(sql)
+@result = @db.executeUpdate(sql)
 end
 
 def insert_sample_data
@@ -26,10 +33,7 @@ def insert_sample_data
 #r2=@db.executeQuery("select * from wordlist")
 end  
 
-def insert_data(word)
-  length = word.length
-@result = @db.executeUpdate("insert into wordlist(word,length) values ( '#{word}', #{length})")
-end
+
 
 def find(options)
 case options
