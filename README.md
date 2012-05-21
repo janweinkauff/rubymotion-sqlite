@@ -13,15 +13,21 @@ check lib/sqlite.rb for the code
     $ rake
     ....
 
+	# class Wordlist < Sqlite
+	# ...."create table wordlist (id INTEGER PRIMARY KEY, word varchar(20),length int, UNIQUE(word));"
+	#end
+
     (main)>> 
-    s = Sqlite.new
+    s = Wordlist.new
     s.createTable
-    s.insert_data('AA')
-    s.insert_data('AB')
-    s.insert_data('HELLO')
+    s.insert_data('Shweta')
+    s.insert_data('Sampoorna')
+    s.insert_data('Senthil')
+    s.insert_data('WORLD')
     s.insert_data('WORLD')
 
     results= s.find(:all)
+    [{"word"=>"Shweta", "id"=>"1", "length"=>"6"}, {"word"=>"Sampoorna", "id"=>"2", "length"=>"9"}, {"word"=>"Senthil", "id"=>"3", "length"=>"7"},{"word"=>"HELLO", "id"=>"4", "length"=>"5"},{"word"=>"WORLD", "id"=>"5", "length"=>"5"}]
 
 
 # what works
